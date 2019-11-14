@@ -1,6 +1,6 @@
 import React from 'react';
 import Saved from './Saved';
-import { NONAME } from 'dns';
+import axios from 'axios';
 
 export default class App extends React.Component {
     constructor(props) {
@@ -9,6 +9,14 @@ export default class App extends React.Component {
             toggleSaved: false,
         };
     }
+
+    getSearch() {
+        axios.get('https://api.jikan.moe/v3/search/anime?q=Fate/Zero&page=1')
+            .then(res => console.log(res.data.results))
+            .catch(err => console.log(err));
+
+    }
+
 
     render(){
         var toggleDisplay = {};
@@ -23,7 +31,7 @@ export default class App extends React.Component {
                 <div className='search row'>
                     <div>
                         <input></input>
-                        <button className='button'>go</button>
+                        <button className='button' onClick={this.getSearch}>go</button>
                     </div>
                     <div className='end'>
                         <button 
