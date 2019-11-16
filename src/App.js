@@ -35,11 +35,12 @@ export default function App() {
     //         .catch(err => console.log('Error triggered in App.js at getSearch().' + err));
 
     // }
-    const getSearch = useCallback( async () => {
+    const getSearch = () => {
         axios.get(`https://api.jikan.moe/v3/search/anime?q=%${searchInput}&page=1`)
-            .then(res => setSearchData( res.data.results , () => console.log(searchData)))
+            .then(res => setSearchData( res.data.results ))
             .catch(err => console.log('Error triggered in App.js at getSearch().' + err));
-    });
+    };
+
     
     
     // render(){
@@ -48,8 +49,20 @@ export default function App() {
         
         // var toggleDisplay = {};
         // if (this.state.toggleSaved) {
-        //     toggleDisplay.display = 'none';
-        // }
+            //     toggleDisplay.display = 'none';
+            // }
+/**
+ * Behold below an incredible console.log contraption to check the value after the async setState.
+ * I will find a better way to do this later.
+ */
+        const consoleThat = () => {
+            
+            setTimeout(function(){ console.log(searchData); }, 1000 );
+    
+        };
+    
+        useEffect(consoleThat, [searchData]);
+
         return (
             <div className='app'>
                 <div className='header'>
