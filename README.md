@@ -2,7 +2,10 @@
 
 This is code that was refactored out of the final app but deemed interesting enough to keep a record of it:
 
-While transforming this app from class components into functional for the greater purpose of implementing hooks. It was necessary to take time to comment out all the class constructor logic as a reference for implmenting the hooks in their place. Below is such an example of a bit of code that was dependant on the class constructor state commented out and then superceded by the new `toggle` hook object.
+
+## Effective Refactoring comment habit:
+### While transforming this app from class components into functional 
+for the greater purpose of implementing hooks. It was necessary to take time to comment out all the class constructor logic as a reference for implmenting the hooks in their place. Below is such an example of a bit of code that was dependant on the class constructor state commented out and then superceded by the new `toggle` hook object.
 ```
 <button 
     className='button' 
