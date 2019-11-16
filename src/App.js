@@ -1,9 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Button, TextInput, Carousel } from 'react-materialize';
 import Saved from './Saved';
 import FakeData from './data.json';
 import SearchResults from './SearchResults';
+import ViewTitle from './ViewTitle';
 
 
 export default function App() {
@@ -16,8 +18,7 @@ export default function App() {
 
     const [searchInput, setSearchInput] = useState('');
     const [searchData, setSearchData] = useState([]);
-    const [toggleSaved, setToggleSaved] = useState(false);
-    
+    const [toggleSaved, setToggleSaved] = useState(true);
     
     var toggleDisplay = {};
     if (toggleSaved) {
@@ -32,12 +33,16 @@ export default function App() {
      * I will find a better way to do this later.
      */
     const consoleThat = () => {
-        
         setTimeout(function(){ console.log(searchData); }, 1000 );
-
     };
 
     useEffect(consoleThat, [searchData]);
+
+    var array = [];
+    FakeData.map((title) => (
+        array.push(title.image_url)
+        
+    ));
 
     return (
         <div className='app'>
@@ -45,30 +50,41 @@ export default function App() {
                 <h1>Lorem Ipsum</h1>
             </div>
             <div className='search row'>
-                <div>
-                    <input type='text' name='searchInput' value={searchInput} onChange={ e => setSearchInput(e.target.value) } ></input>
-                    <button className='button' onClick={
-                        getSearch
-                    }>go</button>
-                </div>
-                <div className='end'>
-                    <button 
-                        className='button' 
-                        onClick={toggle}
-                    >
-                        toggle 
-                    </button>
-                </div>
+                <TextInput 
+                    icon='search'
+                    type='text' 
+                    name='searchInput' 
+                    value={searchInput}
+                    placeholder='search...'
+                    onChange={ e => setSearchInput(e.target.value) } 
+                >
+                </TextInput>
+                <Button 
+                    waves='light'
+                    className='button' 
+                    onClick={getSearch}
+                >go
+                </Button>
+                <Button 
+                    waves='light'
+                    className='button' 
+                    onClick={toggle}
+                >toggle
+                </Button>
             </div>
             <div className='saved-div' style={toggleDisplay}>
                 <ul>
                     {FakeData.slice(0, 5).map((title, index) => (
                         <li className='saved-title' key={title.mal_id}>{title.title}</li>
-                    ))}    
+                    ))}
                 </ul>
                 
             </div>
             <SearchResults searchData={searchData}/>
+            <ViewTitle />
+            <div className='carousel'>
+                <Carousel images={array} />
+            </div>
         </div>
     );
 }
