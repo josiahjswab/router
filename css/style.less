@@ -6,9 +6,11 @@
     margin: 0;
 }
 body {
-    background: rgb(71, 90, 90);
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,74,89,1) 100%);
     font-family: Arial, Helvetica, sans-serif;
     overflow-x: hidden;
+    color: white;
 }
 .row {
     display: flex;
@@ -65,7 +67,7 @@ body {
     flex: 0 0 10.7%;
     margin: auto 3px;
     transition: transform 200ms ease 15ms;
-    // This: title overlay
+    // Title overlay.
     .li-description {
         position: absolute;
         height: 100%;
@@ -74,13 +76,12 @@ body {
         transition: .2s ease;
         background-color: rgba(0, 0, 0, 0.719);
         opacity: 0;
-        color: white;
         overflow-x: auto;
         // Div wrapper for h1 element in title overlay.
         .description-title {
             text-align: center;
             padding: 10px 0px;
-            color: rgb(187, 0, 0);
+            color: red;
         }
         // Div wrapper for p element in title overlay.
         .description-synopsis {

@@ -47,7 +47,7 @@ export default function App() {
     return (
         <div className='app'>
             <div className='header'>
-                <h1>Lorem Ipsum</h1>
+                <h1>⚡️ Something New ✨</h1>
             </div>
             <div className='search row'>
                 <TextInput 
