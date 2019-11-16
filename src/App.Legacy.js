@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Saved from './Saved';
@@ -8,12 +7,39 @@ import SearchResults from './SearchResults';
 
 export default function App() {
 
+// export default class App extends React.Component {
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         toggleSaved: false,
+    //         // searchInput: '',
+    //         searchData: [],
+    //     };
+    //     this.getSearch = this.getSearch.bind(this);
+    //     this.handleChange = this.handleChange.bind(this);
+    // }
+
+    /** This is a JSDoc comment:
+     * ⬇ This is a tag explaining the type of foo  @<type>
+     *  @method
+     *  @param {string} event - the input text
+    */
+    // handleChange(event) {
+    //     this.setState({[event.target.name]: event.target.value});
+    // }
+
+    // getSearch() {
+    //     axios.get(`https://api.jikan.moe/v3/search/anime?q=%${this.state.searchInput}&page=1`)
+    //         .then(res => this.setState({ searchData: res.data.results}, () => console.log(this.state.searchData)))
+    //         .catch(err => console.log('Error triggered in App.js at getSearch().' + err));
+    // }
     const getSearch = () => {
         axios.get(`https://api.jikan.moe/v3/search/anime?q=%${searchInput}&page=1`)
             .then(res => setSearchData( res.data.results ))
             .catch(err => console.log('Error triggered in App.js at getSearch().' + err));
     };
 
+    // render(){
     const [searchInput, setSearchInput] = useState('');
     const [searchData, setSearchData] = useState([]);
     const [toggleSaved, setToggleSaved] = useState(false);
@@ -48,13 +74,18 @@ export default function App() {
                 <div>
                     <input type='text' name='searchInput' value={searchInput} onChange={ e => setSearchInput(e.target.value) } ></input>
                     <button className='button' onClick={
+                        /**this.getSearch*/ 
                         getSearch
                     }>go</button>
                 </div>
                 <div className='end'>
                     <button 
                         className='button' 
-                        onClick={toggle}
+                        onClick={/**() => {
+                            this.state.toggleSaved ? 
+                            this.setState({toggleSaved: false}) : 
+                            this.setState({toggleSaved: true}) 
+                        }*/ toggle}
                     >
                         toggle 
                     </button>
@@ -68,7 +99,9 @@ export default function App() {
                 </ul>
                 
             </div>
+            {/* <SearchResults searchData={this.state.searchData}/> */}
             <SearchResults searchData={searchData}/>
         </div>
     );
+    // }
 }
