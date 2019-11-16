@@ -33,7 +33,6 @@ export default function App() {
     //     axios.get(`https://api.jikan.moe/v3/search/anime?q=%${this.state.searchInput}&page=1`)
     //         .then(res => this.setState({ searchData: res.data.results}, () => console.log(this.state.searchData)))
     //         .catch(err => console.log('Error triggered in App.js at getSearch().' + err));
-
     // }
     const getSearch = () => {
         axios.get(`https://api.jikan.moe/v3/search/anime?q=%${searchInput}&page=1`)
@@ -41,8 +40,6 @@ export default function App() {
             .catch(err => console.log('Error triggered in App.js at getSearch().' + err));
     };
 
-    
-    
     // render(){
     const [searchInput, setSearchInput] = useState('');
     const [searchData, setSearchData] = useState([]);
@@ -50,16 +47,16 @@ export default function App() {
     
     var toggleDisplay = {};
     if (toggleSaved) {
-            toggleDisplay.display = 'none';
-        }
-/**
- * Behold below an incredible console.log contraption to check the value after the async setState.
- * I will find a better way to do this later.
- */
+        toggleDisplay.display = 'none';
+    }
+    
     const toggle = () => {
         toggleSaved ? setToggleSaved(false) : setToggleSaved(true);
     };
-
+    /**
+     * Behold below ⬇ an incredible console.log contraption to check the value after the async setState.
+     * I will find a better way to do this later.
+     */
     const consoleThat = () => {
         
         setTimeout(function(){ console.log(searchData); }, 1000 );
@@ -95,14 +92,15 @@ export default function App() {
                 </div>
             </div>
             <div className='saved-div' style={toggleDisplay}>
-                {/* <ul>
+                <ul>
                     {FakeData.slice(0, 5).map((title, index) => (
                         <li className='saved-title' key={title.mal_id}>{title.title}</li>
                     ))}    
-                </ul> */}
+                </ul>
                 
             </div>
             {/* <SearchResults searchData={this.state.searchData}/> */}
+            <SearchResults searchData={searchData}/>
         </div>
     );
     // }
