@@ -5,7 +5,7 @@ import { Button, TextInput, Carousel } from 'react-materialize';
 import Saved from './Saved';
 import FakeData from './data.json';
 import SearchResults from './SearchResults';
-import ViewTitle from './ViewTitle';
+import WatchList from './WatchList';
 
 
 export default function App() {
@@ -32,17 +32,18 @@ export default function App() {
      * Behold below ⬇ an incredible console.log contraption to check the value after the async setState.
      * I will find a better way to do this later.
      */
-    const consoleThat = () => {
-        setTimeout(function(){ console.log(searchData); }, 1000 );
-    };
+    // const consoleThat = () => {
+    //     setTimeout(function(){ console.log(searchData); }, 1000 );
+    // };
 
-    useEffect(consoleThat, [searchData]);
+    // useEffect(consoleThat, [searchData]);
 
     var array = [];
     FakeData.map((title) => (
         array.push(title.image_url)
         
     ));
+    
 
     return (
         <div className='app'>
@@ -51,6 +52,7 @@ export default function App() {
             </div>
             <div className='search row'>
                 <TextInput 
+                    className='textInput'
                     icon='search'
                     type='text' 
                     name='searchInput' 
@@ -78,10 +80,9 @@ export default function App() {
                         <li className='saved-title' key={title.mal_id}>{title.title}</li>
                     ))}
                 </ul>
-                
             </div>
             <SearchResults searchData={searchData}/>
-            <ViewTitle />
+            <WatchList />
             <div className='carousel'>
                 <Carousel images={array} />
             </div>
